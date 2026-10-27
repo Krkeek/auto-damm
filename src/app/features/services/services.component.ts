@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
-import { LanguageStore } from '@core/state/language.store';
+import { ContentRepository } from '@core/ports/content.repository';
 import { ParallaxDirective } from '@shared/directives/parallax.directive';
 import { RevealDirective } from '@shared/directives/reveal.directive';
 import { IMAGES, SECTION } from '@shared/constants/site-map.constants';
@@ -12,14 +12,11 @@ import { IMAGES, SECTION } from '@shared/constants/site-map.constants';
   templateUrl: './services.component.html',
 })
 export class ServicesComponent {
-  protected readonly content = inject(LanguageStore).content;
+  protected readonly content = inject(ContentRepository).getContent();
   protected readonly section = SECTION;
 
-  protected readonly blocks = computed(() => {
-    const services = this.content().services;
-    return [
-      { key: 'shop', dark: false, image: IMAGES.shop, position: '40% 50%', data: services.shop },
-      { key: 'yard', dark: true, image: IMAGES.yard, position: '50% 50%', data: services.yard },
-    ];
-  });
+  protected readonly blocks = [
+    { key: 'shop', dark: false, image: IMAGES.shop, position: '40% 50%', data: this.content.services.shop },
+    { key: 'yard', dark: true, image: IMAGES.yard, position: '50% 50%', data: this.content.services.yard },
+  ];
 }

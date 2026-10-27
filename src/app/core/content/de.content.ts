@@ -16,7 +16,6 @@ export const DE_CONTENT: SiteContent = {
   controls: {
     themeToLight: 'Hell',
     themeToDark: 'Dunkel',
-    languageAria: 'Language: English',
     close: 'Schließen',
     dialogLabel: 'Zertifikat in Großansicht',
     scrollDown: 'Weiter zu den Leistungen',

@@ -3,47 +3,47 @@
 
   <div class="wrap">
     <div>
-      <h1>{{ content().hero.title }}</h1>
-      <p class="lead" data-in style="--i: 1">{{ content().hero.lead }}</p>
+      <h1>{{ content.hero.title }}</h1>
+      <p class="lead" data-in style="--i: 1">{{ content.hero.lead }}</p>
       <div class="btns" data-in style="--i: 2">
         <a class="btn primary" [href]="'tel:' + business.profile.phone.e164">{{
-          content().hero.call(business.profile.phone.display)
+          content.hero.call(business.profile.phone.display)
         }}</a>
-        <a class="btn" [href]="business.directionsUrl" rel="noopener">{{ content().hero.route }}</a>
+        <a class="btn" [href]="business.directionsUrl" rel="noopener">{{ content.hero.route }}</a>
       </div>
     </div>
 
     <aside class="sign" data-in style="--i: 3" aria-labelledby="live-title">
-      <h2 id="live-title">{{ content().hero.liveTitle }}</h2>
+      <h2 id="live-title">{{ content.hero.liveTitle }}</h2>
 
       <div class="row">
         <div>
-          <strong>{{ content().hero.shop }}</strong>
-          <small>{{ content().hero.shopHours }}</small>
+          <strong>{{ content.hero.shop }}</strong>
+          <small>{{ content.hero.shopHours }}</small>
         </div>
         <span class="state" [class.open]="status.shopOpen()" [class.closed]="!status.shopOpen()">{{
-          status.shopOpen() ? content().hero.open : content().hero.closed
+          status.shopOpen() ? content.hero.open : content.hero.closed
         }}</span>
       </div>
 
       <div class="row">
         <div>
-          <strong>{{ content().hero.yard }}</strong>
-          <small>{{ content().hero.yardHours }}</small>
+          <strong>{{ content.hero.yard }}</strong>
+          <small>{{ content.hero.yardHours }}</small>
         </div>
         <span class="state" [class.open]="status.yardOpen()" [class.closed]="!status.yardOpen()">{{
-          status.yardOpen() ? content().hero.open : content().hero.closed
+          status.yardOpen() ? content.hero.open : content.hero.closed
         }}</span>
       </div>
 
-      <p class="note">{{ content().hero.note }}</p>
+      <p class="note">{{ content.hero.note }}</p>
     </aside>
   </div>
 
   <a
     class="cue"
     [href]="'#' + section.services"
-    [attr.aria-label]="content().controls.scrollDown"
+    [attr.aria-label]="content.controls.scrollDown"
     (click)="scrollDown($event)"
   ></a>
 </section>

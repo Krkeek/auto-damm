@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { BusinessProfileStore } from '@core/state/business-profile.store';
-import { LanguageStore } from '@core/state/language.store';
+import { ContentRepository } from '@core/ports/content.repository';
 import { RevealDirective } from '@shared/directives/reveal.directive';
 import { SECTION } from '@shared/constants/site-map.constants';
 
@@ -15,7 +15,7 @@ import { SECTION } from '@shared/constants/site-map.constants';
 export class ContactComponent {
   private readonly sanitizer = inject(DomSanitizer);
 
-  protected readonly content = inject(LanguageStore).content;
+  protected readonly content = inject(ContentRepository).getContent();
   protected readonly business = inject(BusinessProfileStore);
   protected readonly profile = this.business.profile;
   protected readonly section = SECTION;

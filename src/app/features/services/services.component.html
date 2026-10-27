@@ -1,5 +1,5 @@
-<section class="services" [id]="section.services" [attr.aria-label]="content().services.label">
-  @for (block of blocks(); track block.key) {
+<section class="services" [id]="section.services" [attr.aria-label]="content.services.label">
+  @for (block of blocks; track block.key) {
     <div class="svc" [class.dark]="block.dark">
       <div class="pw" appReveal appParallax>
         <img

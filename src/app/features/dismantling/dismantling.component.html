@@ -1,24 +1,24 @@
 <section class="band" [id]="section.dismantling">
   <div class="wrap doc sec">
-    <h2 class="st rv" appReveal>{{ content().dismantling.title }}</h2>
+    <h2 class="st rv" appReveal>{{ content.dismantling.title }}</h2>
 
     <div class="pw wide" appReveal appParallax>
-      <img class="ph" [src]="images.yard" [alt]="content().dismantling.imageAlt" width="1400" height="430" />
+      <img class="ph" [src]="images.yard" [alt]="content.dismantling.imageAlt" width="1400" height="430" />
     </div>
 
     <div class="split wide">
       <div>
-        <p data-reveal appReveal>{{ content().dismantling.intro }}</p>
-        <p data-reveal appReveal [appRevealDelay]="80">{{ content().dismantling.note }}</p>
+        <p data-reveal appReveal>{{ content.dismantling.intro }}</p>
+        <p data-reveal appReveal [appRevealDelay]="80">{{ content.dismantling.note }}</p>
       </div>
 
       <div class="certs">
         @for (certificate of profile.certificates; track certificate.id; let i = $index) {
-          @let text = content().certificates[certificate.id];
+          @let text = content.certificates[certificate.id];
           <figure data-reveal appReveal [appRevealDelay]="i * 80">
             <button
               type="button"
-              [attr.aria-label]="content().controls.enlarge"
+              [attr.aria-label]="content.controls.enlarge"
               (click)="viewer.open({ src: certificate.image, alt: text.alt })"
             >
               <img [src]="certificate.image" [alt]="text.alt" loading="lazy" />

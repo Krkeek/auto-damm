@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, afterNextRender, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, afterNextRender, inject } from '@angular/core';
 
-import { LanguageStore } from '@core/state/language.store';
+import { ContentRepository } from '@core/ports/content.repository';
 import { ThemeStore } from '@core/state/theme.store';
 import { ScrollStateService } from '@shared/services/scroll-state.service';
 import { SmoothScrollService } from '@shared/services/smooth-scroll.service';
@@ -14,21 +14,17 @@ import { ALL_SECTION_IDS, SECTION } from '@shared/constants/site-map.constants';
 export class HeaderComponent {
   protected readonly scroll = inject(ScrollStateService);
   protected readonly theme = inject(ThemeStore);
-  protected readonly language = inject(LanguageStore);
   private readonly smoothScroll = inject(SmoothScrollService);
 
-  protected readonly content = this.language.content;
+  protected readonly content = inject(ContentRepository).getContent();
 
-  protected readonly items = computed(() => {
-    const nav = this.content().nav;
-    return [
-      { id: SECTION.services, label: nav.services },
-      { id: SECTION.history, label: nav.history },
-      { id: SECTION.dismantling, label: nav.dismantling },
-      { id: SECTION.suppliers, label: nav.suppliers },
-      { id: SECTION.contact, label: nav.contact },
-    ];
-  });
+  protected readonly items = [
+    { id: SECTION.services, label: this.content.nav.services },
+    { id: SECTION.history, label: this.content.nav.history },
+    { id: SECTION.dismantling, label: this.content.nav.dismantling },
+    { id: SECTION.suppliers, label: this.content.nav.suppliers },
+    { id: SECTION.contact, label: this.content.nav.contact },
+  ];
 
   constructor() {
     afterNextRender(() => this.scroll.start(ALL_SECTION_IDS));

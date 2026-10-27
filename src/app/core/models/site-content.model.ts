@@ -12,7 +12,7 @@ export interface HoursRow {
   readonly value: string;
 }
 
-/** All translatable text of the site. One instance per language. */
+/** All text of the site. */
 export interface SiteContent {
   readonly meta: { readonly title: string; readonly description: string };
   readonly nav: {
@@ -26,7 +26,6 @@ export interface SiteContent {
   readonly controls: {
     readonly themeToLight: string;
     readonly themeToDark: string;
-    readonly languageAria: string;
     readonly close: string;
     readonly dialogLabel: string;
     readonly scrollDown: string;
