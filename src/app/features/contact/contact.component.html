@@ -2,7 +2,7 @@
   <div class="wrap sec">
     <div class="contact">
       <div>
-        <h2 class="st rv" appReveal>{{ content().contact.title }}</h2>
+        <h2 class="st rv" appReveal>{{ content.contact.title }}</h2>
 
         <address data-reveal appReveal [appRevealDelay]="80">
           {{ profile.tradeName }}<br />
@@ -20,9 +20,9 @@
 
         <table data-reveal appReveal [appRevealDelay]="320">
           <caption style="text-align: left; font-weight: 600; padding-bottom: 6px">
-            {{ content().contact.hoursTitle }}
+            {{ content.contact.hoursTitle }}
           </caption>
-          @for (row of content().contact.hours; track row.label) {
+          @for (row of content.contact.hours; track row.label) {
             <tr>
               <th>{{ row.label }}</th>
               <td>{{ row.value }}</td>
@@ -35,7 +35,7 @@
         @if (mapLoaded()) {
           <iframe
             [src]="mapSrc()"
-            [title]="content().contact.map.title"
+            [title]="content.contact.map.title"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
             allowfullscreen
@@ -43,12 +43,12 @@
         } @else {
           <div>
             <div class="pin"></div>
-            <p>{{ content().contact.map.text }}</p>
+            <p>{{ content.contact.map.text }}</p>
             <div class="btns">
               <button class="btn" type="button" (click)="mapLoaded.set(true)">
-                {{ content().contact.map.load }}
+                {{ content.contact.map.load }}
               </button>
-              <a class="btn" [href]="business.searchUrl" rel="noopener">{{ content().contact.map.external }}</a>
+              <a class="btn" [href]="business.searchUrl" rel="noopener">{{ content.contact.map.external }}</a>
             </div>
           </div>
         }

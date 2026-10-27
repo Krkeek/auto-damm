@@ -1,15 +1,15 @@
 <section [id]="section.suppliers">
   <div class="wrap doc sec">
-    <h2 class="st rv" appReveal>{{ content().suppliers.title }}</h2>
+    <h2 class="st rv" appReveal>{{ content.suppliers.title }}</h2>
 
-    @for (paragraph of content().suppliers.paragraphs; track paragraph) {
+    @for (paragraph of content.suppliers.paragraphs; track paragraph) {
       <p data-reveal appReveal>{{ paragraph }}</p>
     }
     <p data-reveal appReveal>
-      <strong>{{ content().suppliers.highlight }}</strong>
+      <strong>{{ content.suppliers.highlight }}</strong>
     </p>
 
-    <blockquote class="q" data-reveal appReveal>{{ content().suppliers.quote }}</blockquote>
+    <blockquote class="q" data-reveal appReveal>{{ content.suppliers.quote }}</blockquote>
 
     <ul class="logos wide">
       @for (supplier of profile.suppliers; track supplier.name; let i = $index) {

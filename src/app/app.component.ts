@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 
-import { LanguageStore } from '@core/state/language.store';
+import { ContentRepository } from '@core/ports/content.repository';
 import { ThemeStore } from '@core/state/theme.store';
 import { FooterComponent } from '@layout/footer/footer.component';
 import { HeaderComponent } from '@layout/header/header.component';
@@ -35,19 +35,14 @@ import { CertificateDialogComponent } from '@features/dismantling/certificate-di
 export class AppComponent {
   constructor() {
     const doc = inject(DOCUMENT);
-    const language = inject(LanguageStore);
+    const content = inject(ContentRepository).getContent();
     const theme = inject(ThemeStore);
     const title = inject(Title);
     const meta = inject(Meta);
     const root = doc.documentElement;
 
-    // Keep <html lang>, the page title and the description in step with the chosen language.
-    effect(() => {
-      const content = language.content();
-      root.lang = language.language();
-      title.setTitle(content.meta.title);
-      meta.updateTag({ name: 'description', content: content.meta.description });
-    });
+    title.setTitle(content.meta.title);
+    meta.updateTag({ name: 'description', content: content.meta.description });
 
     // Reflect the chosen theme on <html>; fade colours only when the visitor switches, not on load.
     let firstRun = true;

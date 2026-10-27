@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, effect, inject, viewChild } from '@angular/core';
 
-import { LanguageStore } from '@core/state/language.store';
+import { ContentRepository } from '@core/ports/content.repository';
 import { CertificateViewerService } from '@features/dismantling/certificate-viewer.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { CertificateViewerService } from '@features/dismantling/certificate-view
 })
 export class CertificateDialogComponent {
   protected readonly viewer = inject(CertificateViewerService);
-  protected readonly content = inject(LanguageStore).content;
+  protected readonly content = inject(ContentRepository).getContent();
 
   private readonly dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
 

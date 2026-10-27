@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { BusinessProfileStore } from '@core/state/business-profile.store';
-import { LanguageStore } from '@core/state/language.store';
+import { ContentRepository } from '@core/ports/content.repository';
 import { RevealDirective } from '@shared/directives/reveal.directive';
 import { SECTION } from '@shared/constants/site-map.constants';
 
@@ -12,11 +12,11 @@ import { SECTION } from '@shared/constants/site-map.constants';
   templateUrl: './legal.component.html',
 })
 export class LegalComponent {
-  protected readonly content = inject(LanguageStore).content;
+  protected readonly content = inject(ContentRepository).getContent();
   protected readonly profile = inject(BusinessProfileStore).profile;
   protected readonly section = SECTION;
 
   protected imprint() {
-    return this.content().legal.imprint;
+    return this.content.legal.imprint;
   }
 }
