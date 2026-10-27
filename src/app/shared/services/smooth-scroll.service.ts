@@ -3,8 +3,7 @@ import { Injectable, inject } from '@angular/core';
 
 import { SystemPreferences } from '@core/ports/system-preferences.port';
 
-const easeInOutCubic = (p: number): number =>
-  p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+const easeInOutCubic = (p: number): number => (p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2);
 
 /** Animated scrolling to a section. Stops as soon as the visitor scrolls or presses a key. */
 @Injectable({ providedIn: 'root' })
@@ -28,9 +27,7 @@ export class SmoothScrollService {
     const target = this.targetY(win, element, id);
     const from = win.scrollY;
     const delta = target - from;
-    const duration = this.system.prefersReducedMotion
-      ? 0
-      : Math.min(1200, Math.max(650, Math.abs(delta) * 0.55));
+    const duration = this.system.prefersReducedMotion ? 0 : Math.min(1200, Math.max(650, Math.abs(delta) * 0.55));
 
     try {
       win.history.replaceState(null, '', `#${id}`);

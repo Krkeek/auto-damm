@@ -22,7 +22,5 @@ export class ContactComponent {
 
   /** The map (and with it any data transfer to Google) only loads after the visitor clicks. */
   protected readonly mapLoaded = signal(false);
-  protected readonly mapSrc = computed(() =>
-    this.sanitizer.bypassSecurityTrustResourceUrl(this.business.embedUrl),
-  );
+  protected readonly mapSrc = computed(() => this.sanitizer.bypassSecurityTrustResourceUrl(this.business.embedUrl));
 }

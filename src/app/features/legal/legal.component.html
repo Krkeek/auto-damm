@@ -17,7 +17,8 @@
 
         <h3>{{ imprint().contactTitle }}</h3>
         <p>
-          {{ imprint().phoneLabel }} <a [href]="'tel:' + profile.phone.e164">{{ profile.phone.e164 }}</a><br />
+          {{ imprint().phoneLabel }} <a [href]="'tel:' + profile.phone.e164">{{ profile.phone.e164 }}</a
+          ><br />
           {{ imprint().emailLabel }} <a [href]="'mailto:' + profile.email">{{ profile.email }}</a>
         </p>
 

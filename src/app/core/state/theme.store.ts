@@ -13,9 +13,7 @@ export class ThemeStore {
   /** `null` means "follow the device". */
   readonly preference = signal<Theme | null>(this.preferences.getTheme());
 
-  readonly isDark = computed(
-    () => (this.preference() ?? (this.system.prefersDark() ? 'dark' : 'light')) === 'dark',
-  );
+  readonly isDark = computed(() => (this.preference() ?? (this.system.prefersDark() ? 'dark' : 'light')) === 'dark');
 
   toggle(): void {
     const next: Theme = this.isDark() ? 'light' : 'dark';

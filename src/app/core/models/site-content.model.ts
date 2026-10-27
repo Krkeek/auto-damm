@@ -63,9 +63,7 @@ export interface SiteContent {
     readonly intro: string;
     readonly note: string;
   };
-  readonly certificates: Readonly<
-    Record<CertificateId, { readonly caption: string; readonly alt: string }>
-  >;
+  readonly certificates: Readonly<Record<CertificateId, { readonly caption: string; readonly alt: string }>>;
   readonly suppliers: {
     readonly title: string;
     readonly paragraphs: readonly string[];

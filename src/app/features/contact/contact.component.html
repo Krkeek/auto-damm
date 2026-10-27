@@ -20,7 +20,9 @@
 
         <table data-reveal appReveal [appRevealDelay]="320">
           <caption style="text-align: left; font-weight: 600; padding-bottom: 6px">
-            {{ content.contact.hoursTitle }}
+            {{
+              content.contact.hoursTitle
+            }}
           </caption>
           @for (row of content.contact.hours; track row.label) {
             <tr>
