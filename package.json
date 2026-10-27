@@ -2,11 +2,22 @@
   "name": "auto-damm",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "^20.19.0 || ^22.12.0 || >=24.0.0"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development"
+    "watch": "ng build --watch --configuration development",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.spec.json --noEmit",
+    "test": "ng test --watch=false",
+    "test:coverage": "ng test --watch=false --coverage",
+    "ci": "npm run lint && npm run format:check && npm run typecheck && npm run test:coverage && npm run build"
   },
   "dependencies": {
     "@angular/common": "^21.0.0",
@@ -20,6 +31,17 @@
     "@angular/build": "^21.0.0",
     "@angular/cli": "^21.0.0",
     "@angular/compiler-cli": "^21.0.0",
-    "typescript": "~5.9.2"
+    "@eslint/js": "^9.39.5",
+    "@vitest/coverage-v8": "^4.1.11",
+    "angular-eslint": "^21.4.0",
+    "eslint": "^9.39.5",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.5",
+    "eslint-plugin-boundaries": "^7.4.0",
+    "jsdom": "^29.1.1",
+    "prettier": "^3.9.10",
+    "typescript": "~5.9.2",
+    "typescript-eslint": "^8.72.1",
+    "vitest": "^4.1.11"
   }
 }
