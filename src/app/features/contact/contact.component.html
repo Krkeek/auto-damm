@@ -1,0 +1,58 @@
+<section class="band" [id]="section.contact">
+  <div class="wrap sec">
+    <div class="contact">
+      <div>
+        <h2 class="st rv" appReveal>{{ content().contact.title }}</h2>
+
+        <address data-reveal appReveal [appRevealDelay]="80">
+          {{ profile.tradeName }}<br />
+          {{ profile.street }}<br />
+          {{ profile.postalCode }} {{ profile.city }}
+        </address>
+
+        <a class="tel" data-reveal appReveal [appRevealDelay]="160" [href]="'tel:' + profile.phone.e164">{{
+          profile.phone.display
+        }}</a>
+
+        <p style="margin: 0 0 20px" data-reveal appReveal [appRevealDelay]="240">
+          <a [href]="'mailto:' + profile.email">{{ profile.email }}</a>
+        </p>
+
+        <table data-reveal appReveal [appRevealDelay]="320">
+          <caption style="text-align: left; font-weight: 600; padding-bottom: 6px">
+            {{ content().contact.hoursTitle }}
+          </caption>
+          @for (row of content().contact.hours; track row.label) {
+            <tr>
+              <th>{{ row.label }}</th>
+              <td>{{ row.value }}</td>
+            </tr>
+          }
+        </table>
+      </div>
+
+      <div class="map" [class.loaded]="mapLoaded()" data-reveal appReveal>
+        @if (mapLoaded()) {
+          <iframe
+            [src]="mapSrc()"
+            [title]="content().contact.map.title"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        } @else {
+          <div>
+            <div class="pin"></div>
+            <p>{{ content().contact.map.text }}</p>
+            <div class="btns">
+              <button class="btn" type="button" (click)="mapLoaded.set(true)">
+                {{ content().contact.map.load }}
+              </button>
+              <a class="btn" [href]="business.searchUrl" rel="noopener">{{ content().contact.map.external }}</a>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

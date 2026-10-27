@@ -1,0 +1,25 @@
+<section class="services" [id]="section.services" [attr.aria-label]="content().services.label">
+  @for (block of blocks(); track block.key) {
+    <div class="svc" [class.dark]="block.dark">
+      <div class="pw" appReveal appParallax>
+        <img
+          class="ph"
+          [src]="block.image"
+          [alt]="block.data.imageAlt"
+          [style.object-position]="block.position"
+          width="1400"
+          height="430"
+        />
+      </div>
+      <div class="in">
+        <h2 class="rv" appReveal>{{ block.data.title }}</h2>
+        <p data-reveal appReveal>{{ block.data.text }}</p>
+        <ul>
+          @for (item of block.data.items; track item; let i = $index) {
+            <li data-reveal appReveal [appRevealDelay]="i * 80">{{ item }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+  }
+</section>

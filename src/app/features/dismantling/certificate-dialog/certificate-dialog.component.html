@@ -1,0 +1,11 @@
+<dialog
+  #dialog
+  [attr.aria-label]="content().controls.dialogLabel"
+  (click)="closeOnBackdrop($event)"
+  (close)="viewer.close()"
+>
+  <button class="x" type="button" (click)="dialog.close()">{{ content().controls.close }}</button>
+  @if (viewer.image(); as image) {
+    <img [src]="image.src" [alt]="image.alt" />
+  }
+</dialog>

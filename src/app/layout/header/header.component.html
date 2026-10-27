@@ -1,0 +1,31 @@
+<header [class.sc]="scroll.scrolled()">
+  <div class="wrap">
+    <a class="brand" href="#home" (click)="go($event, 'home')"><b>AUTO</b>DAMM</a>
+
+    <nav [attr.aria-label]="content().nav.label">
+      @for (item of items(); track item.id) {
+        <a
+          [href]="'#' + item.id"
+          [attr.aria-current]="scroll.activeSection() === item.id ? 'true' : null"
+          (click)="go($event, item.id)"
+          >{{ item.label }}</a
+        >
+      }
+    </nav>
+
+    <div class="ctl">
+      <button type="button" (click)="theme.toggle()">
+        {{ theme.isDark() ? content().controls.themeToLight : content().controls.themeToDark }}
+      </button>
+      <button
+        type="button"
+        [attr.lang]="language.otherLanguage()"
+        [attr.aria-label]="content().controls.languageAria"
+        (click)="language.toggle()"
+      >
+        {{ language.otherLanguage().toUpperCase() }}
+      </button>
+    </div>
+  </div>
+  <i class="bar" [style.transform]="'scaleX(' + scroll.progress() + ')'"></i>
+</header>

@@ -1,0 +1,10 @@
+<footer>
+  <div class="wrap">
+    <span>© {{ profile.groupName }}</span>
+    <span>
+      <a [href]="'#' + section.imprint" (click)="go($event, section.imprint)">{{ content().footer.imprint }}</a>
+      <a [href]="'#' + section.privacy" (click)="go($event, section.privacy)">{{ content().footer.privacy }}</a>
+      <a [href]="'#' + section.contact" (click)="go($event, section.contact)">{{ content().footer.contact }}</a>
+    </span>
+  </div>
+</footer>
