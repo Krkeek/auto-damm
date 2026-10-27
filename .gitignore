@@ -7,3 +7,4 @@ out-tsc/
 .idea/
 .vscode/*
 !.vscode/extensions.json
+coverage/

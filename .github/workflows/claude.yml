@@ -1,6 +1,7 @@
 name: Claude Code
 
-# Runs when someone mentions @claude in an issue, a pull request comment or a review.
+# Runs when the owner or a collaborator mentions @claude in an issue, a pull request comment or a review.
+# The author check matters on a public repo: otherwise anyone could trigger it and spend the API key.
 on:
   issue_comment:
     types: [created]
@@ -14,10 +15,12 @@ on:
 jobs:
   claude:
     if: |
+      contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association || github.event.review.author_association || github.event.issue.author_association) && (
       (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
       (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
       (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
       (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
+      )
     runs-on: ubuntu-latest
     permissions:
       contents: write

@@ -16,8 +16,7 @@ export class SystemClock extends Clock {
 
   now(): BusinessTime {
     const parts = this.formatter.formatToParts(new Date());
-    const value = (type: Intl.DateTimeFormatPartTypes): string =>
-      parts.find((part) => part.type === type)?.value ?? '';
+    const value = (type: Intl.DateTimeFormatPartTypes): string => parts.find((part) => part.type === type)?.value ?? '';
 
     return {
       weekday: value('weekday') as Weekday,
