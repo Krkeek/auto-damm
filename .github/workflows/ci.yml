@@ -84,7 +84,8 @@ jobs:
     permissions:
       pull-requests: read
     steps:
+      # Third-party actions are pinned to a commit SHA so a moved tag cannot change what runs; Dependabot updates them.
       # PRs are squash-merged, so the title becomes the commit message on main.
-      - uses: amannn/action-semantic-pull-request@v6
+      - uses: amannn/action-semantic-pull-request@48f256284bd46cdaab1048c3721360e808335d50 # v6.1.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
