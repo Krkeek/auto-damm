@@ -37,17 +37,25 @@ describe('AppComponent', () => {
     expect(TestBed.inject(Meta).getTag('name="description"')?.content).toBe(DE_CONTENT.meta.description);
   });
 
-  it('toggles the theme from the header', async () => {
+  it('toggles the theme from the icon button in the header', async () => {
+    localStorage.setItem('theme', 'light');
     const fixture = TestBed.createComponent(AppComponent);
     await fixture.whenStable();
-    const button = (fixture.nativeElement as HTMLElement).querySelector<HTMLButtonElement>('header .ctl button');
-    const before = button?.textContent;
+    const button = (fixture.nativeElement as HTMLElement).querySelector<HTMLButtonElement>('header button.theme');
+    if (!button) throw new Error('theme button not found');
 
-    button?.click();
+    expect(button.textContent.trim()).toBe('');
+    expect(button.getAttribute('aria-label')).toBe(DE_CONTENT.controls.themeToDark);
+    expect(button.querySelector('svg.moon')?.getAttribute('aria-hidden')).toBe('true');
+
+    button.click();
     await fixture.whenStable();
 
-    expect(document.documentElement.hasAttribute('data-theme')).toBe(true);
-    expect(button?.textContent).not.toBe(before);
+    expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
+    expect(button.getAttribute('aria-label')).toBe(DE_CONTENT.controls.themeToLight);
+    expect(button.querySelector('svg.sun')).not.toBeNull();
+    expect(button.querySelector('svg.moon')).toBeNull();
+    localStorage.clear();
   });
 
   it('opens and closes the certificate dialog', async () => {
