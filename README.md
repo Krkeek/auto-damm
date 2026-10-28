@@ -11,7 +11,7 @@ npm start          # http://localhost:4200
 npm run build      # production build in dist/auto-damm
 ```
 
-Requires Node 20.19+ or 22.12+ (CI uses the version in `.nvmrc`).
+Requires Node 22.22.3+ or 24.15+ (CI uses the version in `.nvmrc`).
 
 ## Contributing
 
