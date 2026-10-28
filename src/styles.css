@@ -457,6 +457,23 @@ footer a {
 .ctl button:hover {
   border-color: var(--accent);
 }
+.ctl button.theme {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+}
+.ctl button.theme svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 .wrap.doc {
   padding-top: 48px;
   padding-bottom: 80px;

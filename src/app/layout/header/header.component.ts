@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, afterNextRender, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, afterNextRender, computed, inject } from '@angular/core';
 
 import { ContentRepository } from '@core/ports/content.repository';
 import { ThemeStore } from '@core/state/theme.store';
@@ -17,6 +17,10 @@ export class HeaderComponent {
   private readonly smoothScroll = inject(SmoothScrollService);
 
   protected readonly content = inject(ContentRepository).getContent();
+
+  protected readonly themeLabel = computed(() =>
+    this.theme.isDark() ? this.content.controls.themeToLight : this.content.controls.themeToDark,
+  );
 
   protected readonly items = [
     { id: SECTION.services, label: this.content.nav.services },

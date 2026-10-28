@@ -14,8 +14,8 @@ export const DE_CONTENT: SiteContent = {
     contact: 'Kontakt',
   },
   controls: {
-    themeToLight: 'Hell',
-    themeToDark: 'Dunkel',
+    themeToLight: 'Zum hellen Design wechseln',
+    themeToDark: 'Zum dunklen Design wechseln',
     close: 'Schließen',
     dialogLabel: 'Zertifikat in Großansicht',
     scrollDown: 'Weiter zu den Leistungen',
