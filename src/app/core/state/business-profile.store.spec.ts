@@ -5,8 +5,11 @@ import { BusinessRepository } from '@core/ports/business.repository';
 import { BusinessProfileStore } from '@core/state/business-profile.store';
 
 describe('BusinessProfileStore', () => {
-  it('builds URL-encoded map links from the address', () => {
-    const profile = { mapsQuery: 'Äußere Str. 49, 09669 Frankenberg' } as BusinessProfile;
+  it('builds map links from the address and the WhatsApp chat link', () => {
+    const profile = {
+      mapsQuery: 'Äußere Str. 49, 09669 Frankenberg',
+      whatsapp: '+49 37206 6070',
+    } as BusinessProfile;
     TestBed.configureTestingModule({
       providers: [{ provide: BusinessRepository, useValue: { getProfile: () => profile } }],
     });
@@ -17,5 +20,6 @@ describe('BusinessProfileStore', () => {
     expect(store.directionsUrl).toBe(`https://www.google.com/maps/dir/?api=1&destination=${encoded}`);
     expect(store.searchUrl).toBe(`https://www.google.com/maps/search/?api=1&query=${encoded}`);
     expect(store.embedUrl).toBe(`https://www.google.com/maps?q=${encoded}&output=embed`);
+    expect(store.whatsappUrl).toBe('https://wa.me/49372066070');
   });
 });

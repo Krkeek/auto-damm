@@ -36,6 +36,7 @@ export interface SiteContent {
     readonly lead: string;
     readonly call: (phone: string) => string;
     readonly route: string;
+    readonly whatsapp: string;
     readonly liveTitle: string;
     readonly shop: string;
     readonly shopHours: string;
