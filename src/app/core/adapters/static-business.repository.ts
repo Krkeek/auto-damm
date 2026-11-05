@@ -15,6 +15,7 @@ const PROFILE: BusinessProfile = {
   city: 'Frankenberg/Sa.',
   mapsQuery: 'Äußere Chemnitzer Str. 49, 09669 Frankenberg',
   phone: { display: '037206 / 6070', e164: '+49372066070' },
+  whatsapp: '+49372066070',
   email: 'info@auto-damm.de',
   registerNumber: '2',
   registerCourt: 'Amtsgericht Chemnitz',
