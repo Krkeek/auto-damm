@@ -39,9 +39,14 @@ Components depend on ports and stores, never on `localStorage`, `Date` or browse
 
 ## Conventions
 
-- A component is a folder with `name.component.ts` and `name.component.html`, uses `ChangeDetectionStrategy.OnPush`,
-  gets dependencies with `inject()`, and exposes template members as `protected readonly`.
-- No component styles. All CSS is global in `src/styles.css`; colour variables (incl. dark mode) are at the top.
+- A component is a folder with `name.component.ts`, `name.component.html` and `name.component.css` (linked with
+  `styleUrl`), uses `ChangeDetectionStrategy.OnPush`, gets dependencies with `inject()`, and exposes template members as
+  `protected readonly`.
+- A component's own styles go in its CSS file, which starts with `:host { display: contents; }` so the host element adds
+  no box. `src/styles.css` holds only what several components share: colour variables (incl. dark mode) at the top, base
+  typography, layout helpers (`.wrap`, `.sec`, `.doc`, `.btn`, `.btns`, `.pw`/`.ph`), the reveal effects and the
+  reduced-motion rules. Component styles are scoped, so a selector there cannot reach another component's elements; use
+  `:host-context(.js)` for rules that depend on a class on `<html>`.
 - App state lives in signal stores in `core/state` (`signal`/`computed`, `providedIn: 'root'`).
 - Every user-facing text goes in `core/content/de.content.ts`, typed by `SiteContent`. Do not hard-code text in templates.
 - Address, phone, opening hours and suppliers: `core/adapters/static-business.repository.ts`. Section ids and image

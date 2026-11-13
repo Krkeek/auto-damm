@@ -9,6 +9,7 @@ import { SECTION } from '@shared/constants/site-map.constants';
   selector: 'app-footer',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './footer.component.html',
+  styleUrl: './footer.component.css',
 })
 export class FooterComponent {
   private readonly smoothScroll = inject(SmoothScrollService);

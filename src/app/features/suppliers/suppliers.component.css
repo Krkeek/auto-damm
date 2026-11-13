@@ -1,0 +1,124 @@
+:host {
+  display: contents;
+}
+blockquote.q {
+  margin: 28px 0;
+  padding: 4px 0 4px 22px;
+  border-left: 8px solid var(--accent);
+  font:
+    700 clamp(28px, 3.8vw, 40px)/1.12 'Barlow Condensed',
+    'Arial Narrow',
+    sans-serif;
+  max-width: none;
+}
+.marquee {
+  position: relative;
+  overflow: hidden;
+  margin-top: 32px;
+}
+.marquee::before,
+.marquee::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 6%;
+  pointer-events: none;
+}
+.marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg), transparent);
+}
+.marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg), transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 45s linear infinite;
+}
+@keyframes marquee {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+ul.logos {
+  display: flex;
+  flex: none;
+  gap: 14px;
+  padding: 0 14px 0 0;
+  margin: 0;
+  list-style: none;
+}
+.logos li {
+  flex: none;
+  margin: 0;
+}
+.logos img {
+  display: block;
+  height: 140px;
+  width: auto;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+@media (max-width: 820px) {
+  .logos img {
+    height: 104px;
+  }
+}
+:host-context(.js) blockquote.q {
+  border-left: 0;
+  position: relative;
+  padding-left: 30px;
+}
+blockquote.q::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.2s;
+}
+blockquote.q.show::before {
+  transform: scaleY(1);
+}
+@media (max-width: 560px) {
+  .logos img {
+    height: 80px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee::before,
+  .marquee::after {
+    display: none;
+  }
+  .marquee-track {
+    width: auto;
+  }
+  ul.logos {
+    flex: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+  }
+  .logos[aria-hidden] {
+    display: none;
+  }
+  .logos li,
+  .logos img {
+    max-width: 100%;
+  }
+  .logos img {
+    height: 88px;
+    object-fit: contain;
+  }
+}

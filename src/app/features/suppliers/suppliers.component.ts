@@ -10,6 +10,7 @@ import { SECTION } from '@shared/constants/site-map.constants';
   imports: [RevealDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './suppliers.component.html',
+  styleUrl: './suppliers.component.css',
 })
 export class SuppliersComponent {
   protected readonly content = inject(ContentRepository).getContent();

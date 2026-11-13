@@ -12,6 +12,7 @@ import { IMAGES, SECTION } from '@shared/constants/site-map.constants';
   imports: [RevealDirective, ParallaxDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './dismantling.component.html',
+  styleUrl: './dismantling.component.css',
 })
 export class DismantlingComponent {
   protected readonly viewer = inject(CertificateViewerService);

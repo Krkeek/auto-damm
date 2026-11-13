@@ -31,6 +31,7 @@ import { CertificateDialogComponent } from '@features/dismantling/certificate-di
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   constructor() {

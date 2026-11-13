@@ -10,6 +10,7 @@ import { IMAGES, SECTION } from '@shared/constants/site-map.constants';
   selector: 'app-hero',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './hero.component.html',
+  styleUrl: './hero.component.css',
 })
 export class HeroComponent {
   private readonly smoothScroll = inject(SmoothScrollService);

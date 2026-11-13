@@ -11,6 +11,7 @@ import { SECTION } from '@shared/constants/site-map.constants';
   imports: [RevealDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './contact.component.html',
+  styleUrl: './contact.component.css',
 })
 export class ContactComponent {
   private readonly sanitizer = inject(DomSanitizer);
