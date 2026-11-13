@@ -52,6 +52,9 @@ Components depend on ports and stores, never on `localStorage`, `Date` or browse
 
 - Specs sit next to the file as `*.spec.ts`. Fake ports with small classes or `useValue` providers in `TestBed`
   (see `core/state/theme.store.spec.ts`).
+- Every component has a spec next to it, `name.component.spec.ts`. It renders the component on its own and checks what
+  the visitor sees and can do (texts, links, clicks). Use `provideCore()` for the real ports and replace the ones that
+  would make the result depend on the clock, the device or scrolling (see `features/hero/hero.component.spec.ts`).
 - Coverage must stay at or above 80% lines/statements/functions and 70% branches (`angular.json`); `core/content` and
   `core/models` are excluded. New logic in stores, use cases, adapters or services needs specs.
 
