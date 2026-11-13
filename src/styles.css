@@ -544,21 +544,44 @@ blockquote.q {
     700 clamp(28px, 3.8vw, 40px)/1.12 'Barlow Condensed',
     'Arial Narrow',
     sans-serif;
-  max-width: 28ch;
+  max-width: none;
 }
-.logos {
+.marquee {
+  overflow: hidden;
+  margin-top: 32px;
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+.marquee-track {
   display: flex;
-  flex-wrap: wrap;
+  width: max-content;
+  animation: marquee 45s linear infinite;
+}
+@keyframes marquee {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+ul.logos {
+  display: flex;
+  flex: none;
   gap: 14px;
-  padding: 0;
-  margin: 32px 0 0;
+  padding: 0 14px 0 0;
+  margin: 0;
   list-style: none;
+}
+.logos li {
+  flex: none;
+  margin: 0;
 }
 .logos img {
   display: block;
   height: 140px;
   width: auto;
   border: 1px solid var(--line);
+  background: #fff;
 }
 @media (max-width: 820px) {
   .split {
@@ -769,12 +792,6 @@ nav a[aria-current]::after {
 .js .certs [data-reveal].show {
   transform: none;
 }
-.js .logos [data-reveal] {
-  transform: scale(0.9);
-}
-.js .logos [data-reveal].show {
-  transform: none;
-}
 .js .rv {
   clip-path: inset(0 0 100% 0);
   transform: translateY(0.45em);
@@ -861,15 +878,6 @@ blockquote.q.show::before {
 .certs button:hover {
   transform: translateY(-6px) rotate(-0.6deg);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
-}
-.logos img {
-  transition:
-    transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
-    box-shadow 0.3s;
-}
-.logos img:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 .contact {
   padding: 0;
@@ -958,6 +966,28 @@ dialog[open]::backdrop {
   *::after {
     animation: none !important;
     transition: none !important;
+  }
+  .marquee {
+    mask-image: none;
+  }
+  .marquee-track {
+    width: auto;
+  }
+  ul.logos {
+    flex: auto;
+    flex-wrap: wrap;
+    padding: 0;
+  }
+  .logos[aria-hidden] {
+    display: none;
+  }
+  .logos li,
+  .logos img {
+    max-width: 100%;
+  }
+  .logos img {
+    height: auto;
+    max-height: 140px;
   }
   .js [data-reveal],
   .js .rv,
