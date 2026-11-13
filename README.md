@@ -123,9 +123,9 @@ The site runs as a Cloudflare Worker with static assets. `wrangler.jsonc` tells 
 (`dist/auto-damm/browser`) and that `worker/index.js` answers `/api/*`.
 
 1. In the dashboard, create a Worker from this repository (Workers & Pages → Create → Import a repository). Its name must
-   match `name` in `wrangler.jsonc`. Under Settings → Build, set the build command to `npm test && npm run build` and
-   keep the deploy command `npx wrangler deploy`. Running the tests in the build keeps a broken settings file from
-   going live.
+   match `name` in `wrangler.jsonc`. Leave the build command empty and keep the deploy command `npx wrangler deploy`:
+   `wrangler.jsonc` runs `npm test && npm run build` before every deploy, and the tests keep a broken settings file
+   from going live.
 2. On GitHub, create an OAuth app (Settings → Developer settings → OAuth Apps) with the production address as homepage
    and `https://<site>/api/callback` as callback URL. The login works on that address only, not on preview URLs.
 3. In the Worker, add the app's `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` (as a secret) under Settings → Variables

@@ -4,6 +4,9 @@
   "name": "auto-damm",
   "main": "worker/index.js",
   "compatibility_date": "2026-11-01",
+  // Wrangler runs this before every deploy, so the dashboard needs no build command. The tests keep a broken
+  // owner-settings.json from going live.
+  "build": { "command": "npm test && npm run build" },
   "assets": {
     "directory": "dist/auto-damm/browser",
     "not_found_handling": "single-page-application",
