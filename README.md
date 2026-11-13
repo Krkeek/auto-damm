@@ -81,6 +81,9 @@ helpers, reveal effects).
 
 Imports use path aliases (defined in `tsconfig.json`): `@core/*`, `@shared/*`, `@layout/*`, `@features/*`.
 
+Every component has a spec next to it, `name.component.spec.ts`, which renders it on its own and checks what the visitor
+sees and can do.
+
 Why it is split this way: replacing the bundled texts with a CMS, or moving preferences from localStorage to a cookie,
 means writing one new adapter and changing one line in `core/core.providers.ts`. Nothing else changes.
 
