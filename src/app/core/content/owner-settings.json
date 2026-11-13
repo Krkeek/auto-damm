@@ -60,6 +60,18 @@
         "Fri",
         "Sat"
       ]
+    },
+    {
+      "days": [
+        "Mon",
+        "Tue",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Wed",
+        "Sun"
+      ],
+      "name": "Max"
     }
   ]
 }
