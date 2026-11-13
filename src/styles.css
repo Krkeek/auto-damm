@@ -547,23 +547,44 @@ blockquote.q {
   max-width: none;
   text-wrap: balance;
 }
+.marquee {
+  overflow: hidden;
+  margin-top: 24px;
+  padding: 8px 0 24px;
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 45s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
 ul.logos {
   display: flex;
-  flex-wrap: wrap;
+  flex: none;
   gap: 14px;
-  padding: 0;
-  margin: 32px 0 0;
+  padding: 0 14px 0 0;
+  margin: 0;
   list-style: none;
 }
 .logos li {
-  max-width: 100%;
+  flex: none;
+  margin: 0;
 }
 .logos img {
   display: block;
-  height: auto;
+  height: 140px;
   width: auto;
-  max-height: 140px;
-  max-width: 100%;
   border: 1px solid var(--line);
   background: #fff;
 }
@@ -572,7 +593,7 @@ ul.logos {
     grid-template-columns: 1fr;
   }
   .logos img {
-    max-height: 104px;
+    height: 104px;
   }
   .ctl {
     order: 2;
@@ -776,12 +797,6 @@ nav a[aria-current]::after {
 .js .certs [data-reveal].show {
   transform: none;
 }
-.js .logos [data-reveal] {
-  transform: scale(0.9);
-}
-.js .logos [data-reveal].show {
-  transform: none;
-}
 .js .rv {
   clip-path: inset(0 0 100% 0);
   transform: translateY(0.45em);
@@ -965,6 +980,28 @@ dialog[open]::backdrop {
   *::after {
     animation: none !important;
     transition: none !important;
+  }
+  .marquee {
+    mask-image: none;
+  }
+  .marquee-track {
+    width: auto;
+  }
+  ul.logos {
+    flex: auto;
+    flex-wrap: wrap;
+    padding: 0;
+  }
+  .logos[aria-hidden] {
+    display: none;
+  }
+  .logos li,
+  .logos img {
+    max-width: 100%;
+  }
+  .logos img {
+    height: auto;
+    max-height: 140px;
   }
   .js [data-reveal],
   .js .rv,
