@@ -112,20 +112,24 @@ new values.
 - **Saving:** `main` only takes pull requests with green checks, so the admin page runs in Decap's editorial workflow:
   "Speichern" opens a PR, and once the checks are green the owner sets it to "Fertig" and clicks "Veröffentlichen",
   which merges it.
-- **Login:** the owner signs in with a GitHub account that has write access to this repository. The two Cloudflare Pages
-  Functions in `functions/api/` do the OAuth handshake; the token stays in the owner's browser.
+- **Login:** the owner signs in with a GitHub account that has write access to this repository. The Cloudflare Worker in
+  `worker/index.js` does the OAuth handshake; the token stays in the owner's browser.
 - **Locally:** run `npx decap-server` next to `npm start` and open `http://localhost:4200/admin/index.html`. Changes are
   then written to your checkout, with no login.
 
-### One-time setup on Cloudflare Pages
+### One-time setup on Cloudflare
 
-1. Create a Pages project from this repository. Build command `npm test && npm run build`, output directory
-   `dist/auto-damm/browser`, environment variable `NODE_VERSION` as in `.nvmrc`. Running the tests in the build keeps a
-   broken settings file from going live.
-2. On GitHub, create an OAuth app (Settings → Developer settings → OAuth Apps) with the site's address as homepage and
-   `https://<site>/api/callback` as callback URL.
-3. In the Pages project, add the app's `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` (as a secret) under Settings →
-   Variables and Secrets, then redeploy.
+The site runs as a Cloudflare Worker with static assets. `wrangler.jsonc` tells Cloudflare where the built site is
+(`dist/auto-damm/browser`) and that `worker/index.js` answers `/api/*`.
+
+1. In the dashboard, create a Worker from this repository (Workers & Pages → Create → Import a repository). Its name must
+   match `name` in `wrangler.jsonc`. Under Settings → Build, set the build command to `npm test && npm run build` and
+   keep the deploy command `npx wrangler deploy`. Running the tests in the build keeps a broken settings file from
+   going live.
+2. On GitHub, create an OAuth app (Settings → Developer settings → OAuth Apps) with the production address as homepage
+   and `https://<site>/api/callback` as callback URL. The login works on that address only, not on preview URLs.
+3. In the Worker, add the app's `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` (as a secret) under Settings → Variables
+   and Secrets.
 4. Invite the owner's GitHub account to this repository with the "Write" role.
 
 ## Open points before going live

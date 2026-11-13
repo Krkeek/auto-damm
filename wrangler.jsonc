@@ -1,0 +1,13 @@
+// Cloudflare deployment: the built site as static files, plus the small Worker that handles the admin login.
+{
+  // Must match the Worker's name in the Cloudflare dashboard.
+  "name": "auto-damm",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "dist/auto-damm/browser",
+    "not_found_handling": "single-page-application",
+    // Only the login endpoints reach the Worker; every other request is answered from the static files.
+    "run_worker_first": ["/api/*"],
+  },
+}
