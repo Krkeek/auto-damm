@@ -23,6 +23,8 @@ export interface BusinessProfile {
   /** Query string used for map links. */
   readonly mapsQuery: string;
   readonly phone: { readonly display: string; readonly e164: string };
+  /** WhatsApp number in E.164 format, e.g. `+49372066070`. */
+  readonly whatsapp: string;
   readonly email: string;
   readonly registerNumber: string;
   readonly registerCourt: string;
