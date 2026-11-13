@@ -163,6 +163,20 @@ nav a[aria-current] {
 .btn:hover {
   filter: brightness(1.08);
 }
+/* icon-only button: same padding as .btn and an icon one line tall, so it is square and as tall as its text neighbours */
+.btn.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 14px;
+}
+.btn.icon svg {
+  width: 1lh;
+  height: 1lh;
+  fill: currentColor;
+}
 .sign {
   background: var(--surface);
   color: var(--ink);
