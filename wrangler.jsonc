@@ -7,6 +7,8 @@
   // Wrangler runs this before every deploy, so the dashboard needs no build command. The tests keep a broken
   // owner-settings.json from going live.
   "build": { "command": "npm test && npm run build" },
+  // Lets Cloudflare build a preview for every other branch (`wrangler preview`); it uses the settings in this file.
+  "previews": {},
   "assets": {
     "directory": "dist/auto-damm/browser",
     "not_found_handling": "single-page-application",
