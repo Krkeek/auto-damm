@@ -110,8 +110,9 @@ new values.
 - **What is editable** is defined in `public/admin/config.yml`. `parseOwnerSettings` (`core/models`) checks the file when
   the app starts and in the tests, so a wrong value fails the build instead of reaching visitors.
 - **Saving:** `main` only takes pull requests with green checks, so the admin page runs in Decap's editorial workflow:
-  "Speichern" opens a PR, and once the checks are green the owner sets it to "Fertig" and clicks "Veröffentlichen",
-  which merges it.
+  "Speichern" opens a PR from a `cms/` branch. The workflow `cms-auto-merge.yml` turns on auto-merge for it, so it is
+  merged a few minutes later, once the checks are green, and Cloudflare deploys the change. The owner does not have to
+  click "Veröffentlichen". Only PRs that change nothing but the settings file are merged this way.
 - **Login:** the owner signs in with a GitHub account that has write access to this repository. The Cloudflare Worker in
   `worker/index.js` does the OAuth handshake; the token stays in the owner's browser.
 - **Locally:** run `npx decap-server` next to `npm start` and open `http://localhost:4200/admin/index.html`. Changes are
