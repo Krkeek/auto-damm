@@ -18,3 +18,17 @@ export interface BusinessTime {
   readonly weekday: Weekday;
   readonly minutesOfDay: number;
 }
+
+/** One block of opening time on a single day. */
+export interface DayHours {
+  readonly fromHour: number;
+  readonly toHour: number;
+}
+
+/** The next time a schedule opens or closes; `daysAhead` is 0 for today. */
+export interface StatusChange {
+  readonly kind: 'opens' | 'closes';
+  readonly weekday: Weekday;
+  readonly hour: number;
+  readonly daysAhead: number;
+}

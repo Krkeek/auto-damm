@@ -2,12 +2,13 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { BusinessProfileStore } from '@core/state/business-profile.store';
 import { ContentRepository } from '@core/ports/content.repository';
-import { OpeningStatusStore } from '@core/state/opening-status.store';
+import { OpeningHoursComponent } from '@features/hero/opening-hours/opening-hours.component';
 import { SmoothScrollService } from '@shared/services/smooth-scroll.service';
 import { IMAGES, SECTION } from '@shared/constants/site-map.constants';
 
 @Component({
   selector: 'app-hero',
+  imports: [OpeningHoursComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.css',
@@ -17,7 +18,6 @@ export class HeroComponent {
 
   protected readonly content = inject(ContentRepository).getContent();
   protected readonly business = inject(BusinessProfileStore);
-  protected readonly status = inject(OpeningStatusStore);
   protected readonly images = IMAGES;
   protected readonly section = SECTION;
 

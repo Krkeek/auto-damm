@@ -57,53 +57,6 @@
   border-left: 10px solid var(--accent);
   padding: 22px 24px;
 }
-.sign h2 {
-  font-size: 30px;
-  margin-bottom: 14px;
-}
-.row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
-  padding: 12px 0;
-  border-top: 1px solid var(--line);
-}
-.row strong {
-  display: block;
-  font-weight: 600;
-}
-.row small {
-  color: var(--muted);
-  font-size: 14px;
-}
-.state {
-  font:
-    700 24px/1 'Barlow Condensed',
-    'Arial Narrow',
-    sans-serif;
-  white-space: nowrap;
-}
-.state::before {
-  content: '';
-  display: inline-block;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  margin-right: 8px;
-  background: currentColor;
-}
-.state.open {
-  color: var(--ok);
-}
-.state.closed {
-  color: var(--closed);
-}
-.sign .note {
-  font-size: 13px;
-  color: var(--muted);
-  margin: 10px 0 0;
-}
 .hero .bg {
   position: absolute;
   inset: 0;
@@ -156,17 +109,6 @@
   to {
     opacity: 1;
     transform: none;
-  }
-}
-.state.open::before {
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 color-mix(in srgb, currentColor 55%, transparent);
-  }
-  100% {
-    box-shadow: 0 0 0 10px transparent;
   }
 }
 .cue {
@@ -282,8 +224,5 @@
   }
   .sign {
     padding: 18px;
-  }
-  .sign h2 {
-    font-size: 28px;
   }
 }
