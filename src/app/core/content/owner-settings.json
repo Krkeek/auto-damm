@@ -40,17 +40,6 @@
   ],
   "team": [
     {
-      "name": "Heine",
-      "days": [
-        "Mon",
-        "Tue",
-        "Wed",
-        "Thu",
-        "Fri",
-        "Sat"
-      ]
-    },
-    {
       "name": "Kirstin",
       "days": [
         "Mon",
@@ -58,13 +47,6 @@
         "Wed",
         "Thu",
         "Fri",
-        "Sat"
-      ]
-    },
-    {
-      "name": "Ahmad",
-      "days": [
-        "Mon",
         "Sat"
       ]
     }
