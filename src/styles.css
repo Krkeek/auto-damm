@@ -148,9 +148,10 @@ nav a[aria-current] {
   flex-wrap: wrap;
   gap: 12px;
 }
-/* buttons that wrap to the next row together, never apart */
+/* buttons that share a row of their own; whatever follows starts on the next row */
 .btn-pair {
   display: flex;
+  flex: 1 1 100%;
   gap: 12px;
 }
 .btn {
@@ -798,6 +799,56 @@ nav a[aria-current]::after {
 .btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+}
+/* route button: a white fill and a sliding arrow on hover */
+.btn.route {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.25s,
+    color 0.3s;
+}
+.btn.route::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.btn.route:hover,
+.btn.route:focus-visible {
+  color: #14202a;
+  filter: none;
+}
+.btn.route:hover::before,
+.btn.route:focus-visible::before {
+  transform: scaleX(1);
+}
+.btn.route svg {
+  flex: none;
+  width: 1lh;
+  height: 1lh;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.btn.route .arrow {
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.btn.route:hover .arrow,
+.btn.route:focus-visible .arrow {
+  transform: translateX(6px);
 }
 .js [data-reveal] {
   opacity: 0;
