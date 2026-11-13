@@ -545,21 +545,16 @@ blockquote.q {
     'Arial Narrow',
     sans-serif;
   max-width: none;
-  text-wrap: balance;
 }
 .marquee {
   overflow: hidden;
-  margin-top: 24px;
-  padding: 8px 0 24px;
+  margin-top: 32px;
   mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
 }
 .marquee-track {
   display: flex;
   width: max-content;
   animation: marquee 45s linear infinite;
-}
-.marquee:hover .marquee-track {
-  animation-play-state: paused;
 }
 @keyframes marquee {
   from {
@@ -883,15 +878,6 @@ blockquote.q.show::before {
 .certs button:hover {
   transform: translateY(-6px) rotate(-0.6deg);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
-}
-.logos img {
-  transition:
-    transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
-    box-shadow 0.3s;
-}
-.logos img:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 .contact {
   padding: 0;
