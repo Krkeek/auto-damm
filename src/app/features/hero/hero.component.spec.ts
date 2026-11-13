@@ -5,7 +5,9 @@ import { provideCore } from '@core/core.providers';
 import { BusinessTime } from '@core/models/opening-hours.model';
 import { BusinessRepository } from '@core/ports/business.repository';
 import { Clock } from '@core/ports/clock.port';
+import { HoursOnDayUseCase } from '@core/use-cases/hours-on-day.use-case';
 import { IsOpenUseCase } from '@core/use-cases/is-open.use-case';
+import { NextChangeUseCase } from '@core/use-cases/next-change.use-case';
 import { HeroComponent } from '@features/hero/hero.component';
 import { SECTION } from '@shared/constants/site-map.constants';
 import { SmoothScrollService } from '@shared/services/smooth-scroll.service';
@@ -17,6 +19,8 @@ describe('HeroComponent', () => {
       providers: [
         provideCore(),
         IsOpenUseCase,
+        HoursOnDayUseCase,
+        NextChangeUseCase,
         { provide: Clock, useValue: { now: () => now } },
         { provide: SmoothScrollService, useValue: smoothScroll },
       ],
@@ -62,24 +66,12 @@ describe('HeroComponent', () => {
     expect(pair?.nextElementSibling?.classList.contains('route')).toBe(true);
   });
 
-  it('reports shop and yard as open during opening hours', async () => {
+  it('shows the opening hours box', async () => {
     const { root } = await setup(tuesdayAfternoon);
-    const states = [...root.querySelectorAll('.state')];
+    const box = root.querySelector('aside.sign');
 
-    expect(states).toHaveLength(2);
-    for (const state of states) {
-      expect(state.classList.contains('open')).toBe(true);
-      expect(state.textContent.trim()).toBe(DE_CONTENT.hero.open);
-    }
-  });
-
-  it('reports the yard as closed on Saturday while the shop is open', async () => {
-    const { root } = await setup({ weekday: 'Sat', minutesOfDay: 10 * 60 });
-    const [shop, yard] = [...root.querySelectorAll('.state')];
-
-    expect(shop.classList.contains('open')).toBe(true);
-    expect(yard.classList.contains('closed')).toBe(true);
-    expect(yard.textContent.trim()).toBe(DE_CONTENT.hero.closed);
+    expect(box?.querySelector('h2')?.textContent).toBe(DE_CONTENT.hero.liveTitle);
+    expect(box?.querySelectorAll('button.day')).toHaveLength(7);
   });
 
   it('scrolls to the services when the arrow at the bottom is clicked', async () => {

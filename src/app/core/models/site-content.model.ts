@@ -1,4 +1,5 @@
 import { CertificateId } from './business-profile.model';
+import { Weekday } from './opening-hours.model';
 
 export interface ServiceBlockContent {
   readonly title: string;
@@ -40,13 +41,21 @@ export interface SiteContent {
     readonly route: string;
     readonly whatsapp: string;
     readonly liveTitle: string;
+    readonly daysLabel: string;
+    readonly dayShort: Readonly<Record<Weekday, string>>;
+    readonly dayNames: Readonly<Record<Weekday, string>>;
+    readonly today: (day: string) => string;
     readonly shop: string;
-    readonly shopHours: string;
     readonly yard: string;
-    readonly yardHours: string;
+    readonly hours: (from: number, to: number) => string;
+    readonly byAppointment: string;
     readonly note: string;
     readonly open: string;
     readonly closed: string;
+    readonly closesAt: (hour: number) => string;
+    readonly opensToday: (hour: number) => string;
+    readonly opensTomorrow: (hour: number) => string;
+    readonly opensOn: (day: string, hour: number) => string;
   };
   readonly services: {
     readonly label: string;

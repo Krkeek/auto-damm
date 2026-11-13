@@ -1,0 +1,38 @@
+<h2 id="live-title">{{ content.hero.liveTitle }}</h2>
+
+<div class="days" role="group" [attr.aria-label]="content.hero.daysLabel">
+  @for (day of weekdays; track day) {
+    <button
+      type="button"
+      class="day"
+      [class.selected]="day === selectedDay()"
+      [class.today]="day === status.today()"
+      [attr.aria-pressed]="day === selectedDay()"
+      [attr.aria-label]="dayLabel(day)"
+      (click)="selectDay(day)"
+    >
+      {{ content.hero.dayShort[day] }}
+    </button>
+  }
+</div>
+
+@for (department of departments; track department.id) {
+  <div class="row">
+    <strong>{{ department.name }}</strong>
+    @if (hoursText(department); as hours) {
+      <span class="hours">{{ hours }}</span>
+    } @else {
+      <span class="hours off">{{ department.offText }}</span>
+    }
+    <small class="state" [class.open]="department.open()" [class.closed]="!department.open()">
+      @if (todaySelected()) {
+        <span class="status">{{ department.open() ? content.hero.open : content.hero.closed }}</span>
+        @if (department.next(); as change) {
+          <span class="change"> · {{ changeText(change) }}</span>
+        }
+      }
+    </small>
+  </div>
+}
+
+<p class="note">{{ content.hero.note }}</p>
