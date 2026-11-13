@@ -54,7 +54,8 @@ Components depend on ports and stores, never on `localStorage`, `Date` or browse
   `parseOwnerSettings` in `core/models/owner-settings.model.ts`.
 - Address, legal facts and suppliers: `core/adapters/static-business.repository.ts`. Section ids and image paths:
   `shared/constants/site-map.constants.ts`. Images: `public/images/`.
-- `functions/` holds the Cloudflare Pages Functions for the admin login; it is not part of the Angular app.
+- `worker/index.js` is the Cloudflare Worker for the admin login and `wrangler.jsonc` the deployment config; neither is
+  part of the Angular app.
 - Keep comments sparse: a short JSDoc on classes and non-obvious members, like the existing code.
 
 ## Tests

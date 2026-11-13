@@ -1,7 +1,39 @@
-// Cloudflare Pages Function: GitHub sends the visitor back here after the login. It swaps the one-time code for an
-// access token and hands the token to the admin page that opened this popup. The token is never stored on the server.
-// Needs GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET, see README "Owner admin page".
-export async function onRequestGet({ request, env }) {
+// Cloudflare Worker for the admin page (/admin): the GitHub login. Everything else is served as a static file, see
+// wrangler.jsonc. Needs GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET of the GitHub OAuth app, see README "Owner admin page".
+export default {
+  fetch(request, env) {
+    const { pathname } = new URL(request.url);
+    if (request.method === 'GET' && pathname === '/api/auth') return startLogin(request, env);
+    if (request.method === 'GET' && pathname === '/api/callback') return finishLogin(request, env);
+    return new Response('Not found', { status: 404 });
+  },
+};
+
+/** Sends the visitor to GitHub to sign in. */
+function startLogin(request, env) {
+  const { origin } = new URL(request.url);
+  const state = crypto.randomUUID();
+
+  const authorize = new URL('https://github.com/login/oauth/authorize');
+  authorize.searchParams.set('client_id', env.GITHUB_CLIENT_ID);
+  authorize.searchParams.set('redirect_uri', `${origin}/api/callback`);
+  authorize.searchParams.set('scope', 'public_repo');
+  authorize.searchParams.set('state', state);
+
+  return new Response(null, {
+    status: 302,
+    headers: {
+      Location: authorize.href,
+      'Set-Cookie': `cms_oauth_state=${state}; Path=/api; HttpOnly; Secure; SameSite=Lax; Max-Age=600`,
+    },
+  });
+}
+
+/**
+ * GitHub sends the visitor back here. Swaps the one-time code for an access token and hands it to the admin page that
+ * opened this popup. The token is never stored on the server.
+ */
+async function finishLogin(request, env) {
   const url = new URL(request.url);
   const code = url.searchParams.get('code');
   const state = url.searchParams.get('state');

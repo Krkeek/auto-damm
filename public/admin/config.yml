@@ -4,7 +4,7 @@ backend:
   repo: Krkeek/auto-damm
   branch: main
   auth_endpoint: api/auth
-  # Enough for a public repository; a private one needs `repo` here and in functions/api/auth.js.
+  # Enough for a public repository; a private one needs `repo` here and in worker/index.js.
   auth_scope: public_repo
   squash_merges: true
   # The PR title check on main expects Conventional Commits.
