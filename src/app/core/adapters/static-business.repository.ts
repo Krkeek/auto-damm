@@ -40,11 +40,11 @@ const PROFILE: BusinessProfile = {
     { name: 'Bosal', logo: 'images/logo-bosal.jpg' },
     { name: 'Liqui Moly', logo: 'images/logo-liqui-moly.jpg' },
     { name: 'febi bilstein', logo: 'images/logo-febi-bilstein.jpg' },
-    { name: 'Mann Filter', logo: 'images/logo-mann-filter.jpg' },
+    { name: 'Mann Filter', logo: 'images/logo-mann-filter.png' },
     { name: 'NK', logo: 'images/logo-nk.jpg' },
     { name: 'Sachs', logo: 'images/logo-sachs.jpg' },
-    { name: 'TRW', logo: 'images/logo-trw.jpg' },
-    { name: 'Bosch', logo: 'images/logo-bosch.jpg' },
+    { name: 'TRW', logo: 'images/logo-trw.png' },
+    { name: 'Bosch', logo: 'images/logo-bosch.webp' },
   ],
 };
 

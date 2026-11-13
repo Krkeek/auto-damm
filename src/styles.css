@@ -544,9 +544,10 @@ blockquote.q {
     700 clamp(28px, 3.8vw, 40px)/1.12 'Barlow Condensed',
     'Arial Narrow',
     sans-serif;
-  max-width: 28ch;
+  max-width: none;
+  text-wrap: balance;
 }
-.logos {
+ul.logos {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
@@ -554,18 +555,24 @@ blockquote.q {
   margin: 32px 0 0;
   list-style: none;
 }
+.logos li {
+  max-width: 100%;
+}
 .logos img {
   display: block;
-  height: 140px;
+  height: auto;
   width: auto;
+  max-height: 140px;
+  max-width: 100%;
   border: 1px solid var(--line);
+  background: #fff;
 }
 @media (max-width: 820px) {
   .split {
     grid-template-columns: 1fr;
   }
   .logos img {
-    height: 104px;
+    max-height: 104px;
   }
   .ctl {
     order: 2;
