@@ -26,6 +26,7 @@ export const DE_CONTENT: SiteContent = {
     lead: 'Neue und gebrauchte Ersatzteile, Zubehör und zertifizierte Altautoverwertung in Frankenberg/Sa. Für Werkstätten und Privatkunden.',
     call: (phone) => `${phone} anrufen`,
     route: 'Route planen',
+    whatsapp: 'Per WhatsApp kontaktieren',
     liveTitle: 'Jetzt geöffnet?',
     shop: 'Teilehandel',
     shopHours: 'Mo–Fr 9–18 Uhr, Sa 9–12 Uhr',
