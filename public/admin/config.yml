@@ -1,0 +1,85 @@
+# What the owner can edit at /admin, and where it is saved. See "Owner admin page" in the README.
+backend:
+  name: github
+  repo: Krkeek/auto-damm
+  branch: main
+  auth_endpoint: api/auth
+  # Enough for a public repository; a private one needs `repo` here and in functions/api/auth.js.
+  auth_scope: public_repo
+  squash_merges: true
+  # The PR title check on main expects Conventional Commits.
+  commit_messages:
+    create: 'chore(content): {{collection}} angelegt'
+    update: 'chore(content): {{collection}} geändert'
+    delete: 'chore(content): {{collection}} gelöscht'
+    uploadMedia: 'chore(content): Bild {{path}} hochgeladen'
+    deleteMedia: 'chore(content): Bild {{path}} gelöscht'
+
+# main only takes pull requests with green checks, so a change is saved as a PR and published from the admin page.
+publish_mode: editorial_workflow
+locale: de
+media_folder: public/images
+public_folder: images
+
+weekdays: &weekdays
+  widget: select
+  multiple: true
+  min: 1
+  options:
+    - { label: Montag, value: Mon }
+    - { label: Dienstag, value: Tue }
+    - { label: Mittwoch, value: Wed }
+    - { label: Donnerstag, value: Thu }
+    - { label: Freitag, value: Fri }
+    - { label: Samstag, value: Sat }
+    - { label: Sonntag, value: Sun }
+
+hours: &hours
+  widget: list
+  label_singular: Zeitraum
+  summary: '{{fields.days}}: {{fields.fromHour}}–{{fields.toHour}} Uhr'
+  hint: Ein Zeitraum gilt für alle gewählten Tage. Für abweichende Zeiten (z. B. Samstag) einen weiteren Zeitraum anlegen.
+  fields:
+    - { name: days, label: Tage, <<: *weekdays }
+    - { name: fromHour, label: Von (volle Stunde), widget: number, value_type: int, min: 0, max: 23 }
+    - { name: toHour, label: Bis (volle Stunde), widget: number, value_type: int, min: 1, max: 24 }
+
+collections:
+  - name: settings
+    label: Einstellungen
+    editor:
+      preview: false
+    files:
+      - name: owner
+        label: Kontakt, Öffnungszeiten und Team
+        file: src/app/core/content/owner-settings.json
+        fields:
+          - name: phone
+            label: Telefon
+            widget: object
+            fields:
+              - { name: display, label: Anzeige auf der Website, widget: string, hint: 'z. B. 037206 / 6070' }
+              - name: e164
+                label: Nummer für den Anruf-Link
+                widget: string
+                hint: Mit Ländervorwahl, ohne Leerzeichen und ohne die führende 0, z. B. +49372066070
+                pattern: ['^\+[1-9]\d{6,14}$', 'Bitte im Format +49372066070 eingeben.']
+          - name: whatsapp
+            label: WhatsApp-Nummer
+            widget: string
+            hint: Mit Ländervorwahl, ohne Leerzeichen und ohne die führende 0, z. B. +49372066070
+            pattern: ['^\+[1-9]\d{6,14}$', 'Bitte im Format +49372066070 eingeben.']
+          - name: email
+            label: E-Mail-Adresse
+            widget: string
+            pattern: ['^[^\s@]+@[^\s@]+\.[^\s@]+$', 'Bitte eine gültige E-Mail-Adresse eingeben.']
+          - { name: shopHours, label: Öffnungszeiten Laden, <<: *hours }
+          - { name: yardHours, label: Öffnungszeiten Verwertung, <<: *hours }
+          - name: team
+            label: Wer ist vor Ort?
+            label_singular: Person
+            widget: list
+            summary: '{{fields.name}}'
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: days, label: Anwesend am, <<: *weekdays }
