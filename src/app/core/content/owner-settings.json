@@ -60,6 +60,12 @@
         "Fri",
         "Sat"
       ]
+    },
+    {
+      "name": "Ahmad",
+      "days": [
+        "Mon"
+      ]
     }
   ]
 }
