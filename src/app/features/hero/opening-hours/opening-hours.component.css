@@ -86,6 +86,23 @@ h2 {
 .hours.off {
   color: var(--muted);
 }
+/* always one line tall (plus padding and border), also on days when nobody is listed */
+.team {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 6px;
+  min-height: calc(1lh + 13px);
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 15px;
+}
+.team .label {
+  color: var(--muted);
+}
+.team strong {
+  font-weight: 600;
+}
 .note {
   font-size: 13px;
   color: var(--muted);

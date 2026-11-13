@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, Signal, computed, inject, signal } 
 import { StatusChange, WEEKDAYS, Weekday } from '@core/models/opening-hours.model';
 import { ContentRepository } from '@core/ports/content.repository';
 import { OpeningStatusStore, WeekHours } from '@core/state/opening-status.store';
+import { TeamStore } from '@core/state/team.store';
 
 /** One row of the opening hours box. */
 interface Department {
@@ -28,9 +29,12 @@ export class OpeningHoursComponent {
 
   protected readonly content = inject(ContentRepository).getContent();
   protected readonly status = inject(OpeningStatusStore);
+  protected readonly team = inject(TeamStore);
   protected readonly weekdays = WEEKDAYS;
   protected readonly selectedDay = computed(() => this.pickedDay() ?? this.status.today());
   protected readonly todaySelected = computed(() => this.selectedDay() === this.status.today());
+  /** Who is on site on the selected day. */
+  protected readonly present = computed(() => this.team.week[this.selectedDay()]);
   protected readonly departments: readonly Department[] = [
     {
       id: 'shop',

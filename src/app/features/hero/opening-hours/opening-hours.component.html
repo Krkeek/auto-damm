@@ -35,4 +35,11 @@
   </div>
 }
 
+<p class="team">
+  @if (present().length > 0) {
+    <span class="label">{{ content.hero.team }}</span>
+    <strong>{{ present().join(', ') }}</strong>
+  }
+</p>
+
 <p class="note">{{ content.hero.note }}</p>

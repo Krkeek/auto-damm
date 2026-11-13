@@ -3,7 +3,9 @@ import { TestBed } from '@angular/core/testing';
 import { DE_CONTENT } from '@core/content/de.content';
 import { provideCore } from '@core/core.providers';
 import { BusinessTime } from '@core/models/opening-hours.model';
+import { TeamMember } from '@core/models/team.model';
 import { Clock } from '@core/ports/clock.port';
+import { TeamRepository } from '@core/ports/team.repository';
 import { HoursOnDayUseCase } from '@core/use-cases/hours-on-day.use-case';
 import { IsOpenUseCase } from '@core/use-cases/is-open.use-case';
 import { NextChangeUseCase } from '@core/use-cases/next-change.use-case';
@@ -18,6 +20,7 @@ describe('OpeningHoursComponent', () => {
         HoursOnDayUseCase,
         NextChangeUseCase,
         { provide: Clock, useValue: { now: () => now } },
+        { provide: TeamRepository, useValue: { getTeam: () => team } },
       ],
     });
     const fixture = TestBed.createComponent(OpeningHoursComponent);
@@ -25,6 +28,10 @@ describe('OpeningHoursComponent', () => {
     return { root: fixture.nativeElement as HTMLElement, fixture };
   }
 
+  const team: TeamMember[] = [
+    { name: 'Anna', days: ['Tue', 'Sat'] },
+    { name: 'Bernd', days: ['Tue'] },
+  ];
   const tuesdayAfternoon: BusinessTime = { weekday: 'Tue', minutesOfDay: 14 * 60 };
   const saturdayMorning: BusinessTime = { weekday: 'Sat', minutesOfDay: 10 * 60 };
 
@@ -100,5 +107,20 @@ describe('OpeningHoursComponent', () => {
     await fixture.whenStable();
 
     expect(text(root.querySelector('.row .state'))).toBe('Geöffnet · schließt um 18 Uhr');
+  });
+
+  it('names who is on site on the selected day', async () => {
+    const { root, fixture } = await setup(tuesdayAfternoon);
+
+    expect(text(root.querySelector('.team .label'))).toBe(DE_CONTENT.hero.team);
+    expect(text(root.querySelector('.team strong'))).toBe('Anna, Bernd');
+
+    dayButton(root, 'Sa')?.click();
+    await fixture.whenStable();
+    expect(text(root.querySelector('.team strong'))).toBe('Anna');
+
+    dayButton(root, 'So')?.click();
+    await fixture.whenStable();
+    expect(text(root.querySelector('.team'))).toBe('');
   });
 });

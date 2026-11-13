@@ -46,6 +46,7 @@ export const DE_CONTENT: SiteContent = {
     yard: 'Autoverwertung und Gebrauchtteile',
     hours: (from, to) => `${from}–${to} Uhr`,
     byAppointment: 'Nach Vereinbarung',
+    team: 'Für Sie da:',
     note: 'Gilt für reguläre Öffnungszeiten, ohne Gewähr an Feiertagen.',
     open: 'Geöffnet',
     closed: 'Geschlossen',

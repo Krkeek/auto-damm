@@ -49,6 +49,7 @@ export interface SiteContent {
     readonly yard: string;
     readonly hours: (from: number, to: number) => string;
     readonly byAppointment: string;
+    readonly team: string;
     readonly note: string;
     readonly open: string;
     readonly closed: string;
