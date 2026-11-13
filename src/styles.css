@@ -147,6 +147,11 @@ nav a[aria-current] {
   flex-wrap: wrap;
   gap: 12px;
 }
+/* buttons that wrap to the next row together, never apart */
+.btn-pair {
+  display: flex;
+  gap: 12px;
+}
 .btn {
   display: inline-block;
   padding: 14px 22px;
