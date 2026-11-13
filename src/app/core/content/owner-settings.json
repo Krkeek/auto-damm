@@ -1,0 +1,65 @@
+{
+  "phone": {
+    "display": "037206 / 6070",
+    "e164": "+49372066070"
+  },
+  "whatsapp": "+49372066070",
+  "email": "info@auto-damm.de",
+  "shopHours": [
+    {
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri"
+      ],
+      "fromHour": 9,
+      "toHour": 18
+    },
+    {
+      "days": [
+        "Sat"
+      ],
+      "fromHour": 9,
+      "toHour": 12
+    }
+  ],
+  "yardHours": [
+    {
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri"
+      ],
+      "fromHour": 10,
+      "toHour": 17
+    }
+  ],
+  "team": [
+    {
+      "name": "Heine",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat"
+      ]
+    },
+    {
+      "name": "Kirstin",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat"
+      ]
+    }
+  ]
+}

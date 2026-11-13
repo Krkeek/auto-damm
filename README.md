@@ -89,15 +89,44 @@ means writing one new adapter and changing one line in `core/core.providers.ts`.
 
 ## Common changes
 
-| I want to…                       | Edit                                                                                |
-| -------------------------------- | ----------------------------------------------------------------------------------- |
-| Change a text                    | `core/content/de.content.ts`                                                        |
-| Change address, phone, hours     | `core/adapters/static-business.repository.ts`                                       |
-| Add a supplier logo              | Put the image in `public/images/`, add it to the same file                          |
-| Change colours (incl. dark mode) | Variables at the top of `src/styles.css`                                            |
-| Add or reorder a section         | `features/`, `app.component.ts` + `.html`, `shared/constants/site-map.constants.ts` |
+| I want to…                        | Edit                                                                                        |
+| --------------------------------- | ------------------------------------------------------------------------------------------- |
+| Change a text                     | `core/content/de.content.ts`                                                                |
+| Change phone, e-mail, hours, team | The owner does this at `/admin` (see below); the file is `core/content/owner-settings.json` |
+| Change address, legal facts       | `core/adapters/static-business.repository.ts`                                               |
+| Add a supplier logo               | Put the image in `public/images/`, add it to the same file                                  |
+| Change colours (incl. dark mode)  | Variables at the top of `src/styles.css`                                                    |
+| Add or reorder a section          | `features/`, `app.component.ts` + `.html`, `shared/constants/site-map.constants.ts`         |
 
 The content type `SiteContent` lists every text, so a missing one is a compile error.
+
+## Owner admin page
+
+The owner changes phone, WhatsApp, e-mail, opening hours and who is on site at `/admin`, without a developer and without
+a backend. The page is [Decap CMS](https://decapcms.org) (`public/admin/`): a form that saves
+`src/app/core/content/owner-settings.json` to this repository through the GitHub API. The site is then rebuilt with the
+new values.
+
+- **What is editable** is defined in `public/admin/config.yml`. `parseOwnerSettings` (`core/models`) checks the file when
+  the app starts and in the tests, so a wrong value fails the build instead of reaching visitors.
+- **Saving:** `main` only takes pull requests with green checks, so the admin page runs in Decap's editorial workflow:
+  "Speichern" opens a PR, and once the checks are green the owner sets it to "Fertig" and clicks "Veröffentlichen",
+  which merges it.
+- **Login:** the owner signs in with a GitHub account that has write access to this repository. The two Cloudflare Pages
+  Functions in `functions/api/` do the OAuth handshake; the token stays in the owner's browser.
+- **Locally:** run `npx decap-server` next to `npm start` and open `http://localhost:4200/admin/index.html`. Changes are
+  then written to your checkout, with no login.
+
+### One-time setup on Cloudflare Pages
+
+1. Create a Pages project from this repository. Build command `npm test && npm run build`, output directory
+   `dist/auto-damm/browser`, environment variable `NODE_VERSION` as in `.nvmrc`. Running the tests in the build keeps a
+   broken settings file from going live.
+2. On GitHub, create an OAuth app (Settings → Developer settings → OAuth Apps) with the site's address as homepage and
+   `https://<site>/api/callback` as callback URL.
+3. In the Pages project, add the app's `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` (as a secret) under Settings →
+   Variables and Secrets, then redeploy.
+4. Invite the owner's GitHub account to this repository with the "Write" role.
 
 ## Open points before going live
 

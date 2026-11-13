@@ -49,8 +49,12 @@ Components depend on ports and stores, never on `localStorage`, `Date` or browse
   `:host-context(.js)` for rules that depend on a class on `<html>`.
 - App state lives in signal stores in `core/state` (`signal`/`computed`, `providedIn: 'root'`).
 - Every user-facing text goes in `core/content/de.content.ts`, typed by `SiteContent`. Do not hard-code text in templates.
-- Address, phone, opening hours and suppliers: `core/adapters/static-business.repository.ts`. Section ids and image
-  paths: `shared/constants/site-map.constants.ts`. Images: `public/images/`.
+- Phone, WhatsApp, e-mail, opening hours and the team: `core/content/owner-settings.json`. The owner edits this file
+  through the admin page (`public/admin/`, Decap CMS), so keep its shape in sync with `public/admin/config.yml` and
+  `parseOwnerSettings` in `core/models/owner-settings.model.ts`.
+- Address, legal facts and suppliers: `core/adapters/static-business.repository.ts`. Section ids and image paths:
+  `shared/constants/site-map.constants.ts`. Images: `public/images/`.
+- `functions/` holds the Cloudflare Pages Functions for the admin login; it is not part of the Angular app.
 - Keep comments sparse: a short JSDoc on classes and non-obvious members, like the existing code.
 
 ## Tests

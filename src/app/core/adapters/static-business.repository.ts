@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 
 import { BusinessProfile } from '@core/models/business-profile.model';
-import { Weekday } from '@core/models/opening-hours.model';
+import { parseOwnerSettings } from '@core/models/owner-settings.model';
 import { BusinessRepository } from '@core/ports/business.repository';
+import rawSettings from '@core/content/owner-settings.json';
 
-const WORKDAYS: readonly Weekday[] = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+/** Phone, e-mail and opening hours come from the file the owner edits on the admin page. */
+const SETTINGS = parseOwnerSettings(rawSettings);
 
 const PROFILE: BusinessProfile = {
   tradeName: 'Auto Damm e.K.',
@@ -14,23 +16,16 @@ const PROFILE: BusinessProfile = {
   postalCode: '09669',
   city: 'Frankenberg/Sa.',
   mapsQuery: 'Äußere Chemnitzer Str. 49, 09669 Frankenberg',
-  phone: { display: '037206 / 6070', e164: '+49372066070' },
-  whatsapp: '+49372066070',
-  email: 'info@auto-damm.de',
+  phone: SETTINGS.phone,
+  whatsapp: SETTINGS.whatsapp,
+  email: SETTINGS.email,
   registerNumber: '2',
   registerCourt: 'Amtsgericht Chemnitz',
   vatId: 'DE141212015',
   odrUrl: 'https://ec.europa.eu/consumers/odr/',
   schedules: {
-    shop: {
-      ranges: [
-        { days: WORKDAYS, fromHour: 9, toHour: 18 },
-        { days: ['Sat'], fromHour: 9, toHour: 12 },
-      ],
-    },
-    yard: {
-      ranges: [{ days: WORKDAYS, fromHour: 10, toHour: 17 }],
-    },
+    shop: { ranges: SETTINGS.shopHours },
+    yard: { ranges: SETTINGS.yardHours },
   },
   certificates: [
     { id: 'demontage', image: 'images/cert-demontage.jpg' },
