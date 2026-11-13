@@ -536,12 +536,9 @@ footer a {
 }
 .split {
   display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 40px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 56px;
   align-items: start;
-}
-.split .certs {
-  grid-template-columns: 1fr;
 }
 blockquote.q {
   margin: 28px 0;
@@ -611,9 +608,7 @@ ul.logos {
 @media (max-width: 820px) {
   .split {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .split .certs {
-    grid-template-columns: 1fr 1fr;
+    gap: 40px;
   }
   .logos img {
     height: 104px;
