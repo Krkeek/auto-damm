@@ -7,6 +7,7 @@ import { CertificateViewerService } from '@features/dismantling/certificate-view
   selector: 'app-certificate-dialog',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './certificate-dialog.component.html',
+  styleUrl: './certificate-dialog.component.css',
 })
 export class CertificateDialogComponent {
   protected readonly viewer = inject(CertificateViewerService);

@@ -10,6 +10,7 @@ import { ALL_SECTION_IDS, SECTION } from '@shared/constants/site-map.constants';
   selector: 'app-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './header.component.html',
+  styleUrl: './header.component.css',
   host: { '(document:keydown.escape)': 'menuOpen.set(false)' },
 })
 export class HeaderComponent {

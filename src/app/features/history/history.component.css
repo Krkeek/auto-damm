@@ -1,0 +1,13 @@
+:host {
+  display: contents;
+}
+.hist {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 56px;
+}
+@media (max-width: 820px) {
+  .hist {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -10,6 +10,7 @@ import { IMAGES, SECTION } from '@shared/constants/site-map.constants';
   imports: [RevealDirective, ParallaxDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './services.component.html',
+  styleUrl: './services.component.css',
 })
 export class ServicesComponent {
   protected readonly content = inject(ContentRepository).getContent();

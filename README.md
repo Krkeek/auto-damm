@@ -71,11 +71,13 @@ src/app/
 ├── features/               One folder per page section
 │   ├── hero/  services/  history/  suppliers/  contact/  legal/
 │   └── dismantling/        Includes the certificate dialog and its viewer service
-├── app.component.ts|html   Root component
+├── app.component.*         Root component (ts, html, css)
 └── app.config.ts
 ```
 
-Each component is a folder with `name.component.ts` and `name.component.html`. Styles are global in `src/styles.css`.
+Each component is a folder with `name.component.ts`, `name.component.html` and `name.component.css`. A component's own
+styles live in its CSS file; `src/styles.css` holds only what several components share (colours, typography, layout
+helpers, reveal effects).
 
 Imports use path aliases (defined in `tsconfig.json`): `@core/*`, `@shared/*`, `@layout/*`, `@features/*`.
 
