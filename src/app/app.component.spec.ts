@@ -58,6 +58,39 @@ describe('AppComponent', () => {
     localStorage.clear();
   });
 
+  it('opens the phone menu and closes it again when a link is chosen', async () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    await fixture.whenStable();
+    const header = (fixture.nativeElement as HTMLElement).querySelector('header');
+    const button = header?.querySelector<HTMLButtonElement>('button.menu');
+    if (!header || !button) throw new Error('menu button not found');
+
+    expect(button.getAttribute('aria-expanded')).toBe('false');
+    expect(button.getAttribute('aria-label')).toBe(DE_CONTENT.controls.menuOpen);
+
+    button.click();
+    await fixture.whenStable();
+    expect(header.classList.contains('open')).toBe(true);
+    expect(button.getAttribute('aria-expanded')).toBe('true');
+    expect(button.getAttribute('aria-label')).toBe(DE_CONTENT.controls.menuClose);
+
+    header.querySelector<HTMLAnchorElement>('nav a')?.click();
+    await fixture.whenStable();
+    expect(header.classList.contains('open')).toBe(false);
+  });
+
+  it('gives every supplier logo its pixel size', async () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    await fixture.whenStable();
+    const logos = (fixture.nativeElement as HTMLElement).querySelectorAll('.logos img');
+
+    expect(logos.length).toBeGreaterThan(0);
+    for (const logo of logos) {
+      expect(Number(logo.getAttribute('width'))).toBeGreaterThan(0);
+      expect(Number(logo.getAttribute('height'))).toBeGreaterThan(0);
+    }
+  });
+
   it('opens and closes the certificate dialog', async () => {
     const fixture = TestBed.createComponent(AppComponent);
     await fixture.whenStable();

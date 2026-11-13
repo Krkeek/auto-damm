@@ -33,7 +33,8 @@ export class RevealDirective {
             observer.disconnect();
           }
         },
-        { rootMargin: '0px 0px -8% 0px', threshold: 0.01 },
+        // threshold 0: headings start fully clipped, so their visible ratio is 0 until they are revealed
+        { rootMargin: '0px 0px -8% 0px', threshold: 0 },
       );
       observer.observe(element);
       destroyRef.onDestroy(() => observer.disconnect());

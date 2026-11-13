@@ -10,6 +10,9 @@ export interface Certificate {
 export interface Supplier {
   readonly name: string;
   readonly logo: string;
+  /** Pixel size of the logo file, so the browser knows its shape before it has loaded. */
+  readonly width: number;
+  readonly height: number;
 }
 
 /** Language-independent facts about the business. */

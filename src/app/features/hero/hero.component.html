@@ -6,11 +6,10 @@
       <h1>{{ content.hero.title }}</h1>
       <p class="lead" data-in style="--i: 1">{{ content.hero.lead }}</p>
       <div class="btns" data-in style="--i: 2">
-        <a class="btn primary" [href]="'tel:' + business.profile.phone.e164">{{
-          content.hero.call(business.profile.phone.display)
-        }}</a>
         <span class="btn-pair">
-          <a class="btn" [href]="business.directionsUrl" rel="noopener">{{ content.hero.route }}</a>
+          <a class="btn primary" [href]="'tel:' + business.profile.phone.e164">{{
+            content.hero.call(business.profile.phone.display)
+          }}</a>
           <a
             class="btn icon whatsapp"
             [href]="business.whatsappUrl"
@@ -26,6 +25,12 @@
             </svg>
           </a>
         </span>
+        <a class="btn route" [href]="business.directionsUrl" rel="noopener">
+          <span>{{ content.hero.route }}</span>
+          <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4 12h15M13 6l6 6-6 6" />
+          </svg>
+        </a>
       </div>
     </div>
 
