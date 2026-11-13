@@ -11,13 +11,18 @@
 
     <blockquote class="q" data-reveal appReveal>{{ content.suppliers.quote }}</blockquote>
 
-    <div class="marquee wide" data-reveal appReveal>
+    <div class="marquee wide">
       <div class="marquee-track">
         @for (copy of [0, 1]; track copy) {
           <ul class="logos" [attr.aria-hidden]="copy ? 'true' : null">
             @for (supplier of profile.suppliers; track supplier.name) {
               <li>
-                <img [src]="supplier.logo" [alt]="copy ? '' : supplier.name" />
+                <img
+                  [src]="supplier.logo"
+                  [alt]="copy ? '' : supplier.name"
+                  [attr.width]="supplier.width"
+                  [attr.height]="supplier.height"
+                />
               </li>
             }
           </ul>

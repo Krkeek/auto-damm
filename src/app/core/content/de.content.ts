@@ -16,6 +16,8 @@ export const DE_CONTENT: SiteContent = {
   controls: {
     themeToLight: 'Zum hellen Design wechseln',
     themeToDark: 'Zum dunklen Design wechseln',
+    menuOpen: 'Menü öffnen',
+    menuClose: 'Menü schließen',
     close: 'Schließen',
     dialogLabel: 'Zertifikat in Großansicht',
     scrollDown: 'Weiter zu den Leistungen',
@@ -128,7 +130,8 @@ export const DE_CONTENT: SiteContent = {
       odrTitle: 'EU-Streitschlichtung',
       odrText: 'Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:',
       odrNote: 'Unsere E-Mail-Adresse finden Sie oben im Impressum.',
-      consumerTitle: 'Verbraucherstreitbeilegung/Universalschlichtungsstelle',
+      // \u200b (zero-width space) lets the heading wrap after the slash on narrow screens
+      consumerTitle: 'Verbraucherstreitbeilegung/\u200bUniversalschlichtungsstelle',
       consumerText:
         'Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.',
     },

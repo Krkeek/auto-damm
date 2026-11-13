@@ -1,8 +1,8 @@
-<header [class.sc]="scroll.scrolled()">
+<header [class.sc]="scroll.scrolled()" [class.open]="menuOpen()">
   <div class="wrap">
     <a class="brand" href="#home" (click)="go($event, 'home')"><b>AUTO</b>DAMM</a>
 
-    <nav [attr.aria-label]="content.nav.label">
+    <nav id="site-nav" [attr.aria-label]="content.nav.label">
       @for (item of items; track item.id) {
         <a
           [href]="'#' + item.id"
@@ -33,6 +33,24 @@
             <path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z" />
           </svg>
         }
+      </button>
+
+      <button
+        type="button"
+        class="menu"
+        aria-controls="site-nav"
+        [attr.aria-expanded]="menuOpen()"
+        [attr.aria-label]="menuLabel()"
+        [title]="menuLabel()"
+        (click)="menuOpen.set(!menuOpen())"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          @if (menuOpen()) {
+            <path d="M5 5l14 14M19 5L5 19" />
+          } @else {
+            <path d="M3 6h18M3 12h18M3 18h18" />
+          }
+        </svg>
       </button>
     </div>
   </div>

@@ -26,6 +26,8 @@ export interface SiteContent {
   readonly controls: {
     readonly themeToLight: string;
     readonly themeToDark: string;
+    readonly menuOpen: string;
+    readonly menuClose: string;
     readonly close: string;
     readonly dialogLabel: string;
     readonly scrollDown: string;
